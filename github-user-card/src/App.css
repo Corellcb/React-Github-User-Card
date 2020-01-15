@@ -13,10 +13,10 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-color: brown;
 }

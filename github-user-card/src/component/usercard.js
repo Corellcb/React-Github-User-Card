@@ -5,12 +5,25 @@ const UserCardDiv = styled.div`
     display: flex;
     box-shadow: 0 0 10px;
     width: 95%;
-    margin: auto;
-    padding: 2%;
+    margin: 2% auto;
+    padding: 4%;
+    background: burlywood;
+    align-items: center;
+
+    img {
+        width: 90%;
+        border-radius: 10px;
+    }
 
     .user-foll {
         display: flex;
         justify-content: space-between;
+    }
+
+    .info-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
     }
 `
 
@@ -22,7 +35,7 @@ const UserCard = props => {
                 <img alt='User Avatar' src={props.gUser.avatar_url} />
             </div>
 
-            <div>
+            <div className='info-div' >
                 <div className='user-foll' >
                     <h3>Username: {props.gUser.login}</h3>
                     <h3>Company: {props.gUser.company}</h3>
@@ -35,7 +48,9 @@ const UserCard = props => {
                     <h3># of Repos: {props.gUser.public_repos}</h3>
                 </div>
 
-                <h3>{props.gUser.bio}</h3>
+                <div>
+                    <h3>{props.gUser.bio}</h3>
+                </div>
             </div>
             
         </UserCardDiv>
@@ -45,4 +60,6 @@ const UserCard = props => {
 export default UserCard;
 
 {/* <h3>{props.gUser.followers_url}</h3>
-    <h3>{props.gUser.following_url}</h3> */}
+    <h3>{props.gUser.following_url}</h3>
+    
+*/}
