@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import axios from 'axios';
+import UserCard from './component/usercard';
+import FollowerList from './component/followerList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import FollowerCard from './component/followercard';
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      gUser: [],
+      fUsers: []
+    }
+  }
+
+  componentDidMount() {
+    axios
+      .get('https://api.github.com/users/corellcb')
+      .then(response => {
+        this.setState({gUser: response.data});
+        console.log(this.state.gUser);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    axios
+      .get('https://api.github.com/users/Corellcb/followers')
+      .then(response => {
+        this.setState({ fUsers: response.data });
+        console.log(this.state.fUsers);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+
+    
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Github Usercard</h1>
+        <UserCard gUser={this.state.gUser} />
+        <FollowerList fUsers={this.state.fUsers} />
+      </div>
+    );
+  }
 }
 
 export default App;
